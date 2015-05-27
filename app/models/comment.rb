@@ -6,4 +6,8 @@ class Comment < ActiveRecord::Base
   def title
     self.topic.title
   end
+
+  def can_delete_by?(user)
+    ( self.user == user ) || ( self.topic.try(:user) == user )
+  end
 end
