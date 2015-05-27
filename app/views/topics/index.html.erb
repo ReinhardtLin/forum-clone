@@ -6,6 +6,7 @@
 <table>
   <tr>
     <th>Topic</th>
+    <th>Category</th>
     <th>Author</th>
     <th>Comments</th>
     <th>Time</th>
@@ -13,6 +14,7 @@
   <% @topics.each do |t| %>
   <tr>
     <td><%= link_to t.title, topic_path(t) %></td>
+    <td><%= t.categories.map{ |c| c.name }.join(", ") %></td>
     <td><%= t.user.try(:display_name) %></td>
     <td><%= t.commets_count %></td>
     <td><%= t.create_at.strftime("%B %d at %I:%M %p") %></td>
