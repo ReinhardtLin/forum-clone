@@ -9,10 +9,10 @@ class TopicsController < ApplicationController
       @topic = Topic.all
     end
 
-    @q = @topics.search(params[:q])
-    @topics = @q.result(distinct: true)
+    # @q = @topics.search(params[:q])
+    # @topics = @q.result(distinct: true)
 
-    @topics = @topics.page(params[:page]).per(10)
+    @topics = Topic.page(params[:page]).per(10)
   end
 
   def show

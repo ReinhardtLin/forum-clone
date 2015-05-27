@@ -1,7 +1,7 @@
 <h2>Topic List</h2>
 
-<%= sort_link(@q, :create_at, 'Create At', default_order: :desc) %>
-<%= sort_link(@q, :comment_count, 'Comments', default_order: :desc) %>
+<%#= sort_link(@q, :create_at, 'Create At', default_order: :desc) %>
+<%#= sort_link(@q, :comment_count, 'Comments', default_order: :desc) %>
 
 <% Category.all.each do |c| %>
   <%= link_to c.name, topics_path( :cid => c.id ) %>
@@ -14,19 +14,15 @@
     <th>Category</th>
     <th>Author</th>
     <th>Comments</th>
-    <th>Time</th>
   </tr>
   <% @topics.each do |t| %>
   <tr>
     <td><%= link_to t.title, topic_path(t) %></td>
     <td><%= t.categories.map{ |c| c.name }.join(", ") %></td>
     <td>
-      <% t.authors.each do |a| %>
-        <%= link_to a.display_name, user_path(a) %>
-      <% end %>
+      <%= t.user.try(:display_name) %>
     </td>
-    <td><%= t.commets_count %></td>
-    <td><%= t.create_at.strftime("%B %d at %I:%M %p") %></td>
+    <td><%= t.comments_count %></td>
   </tr>
   <% end %>
 </table>
