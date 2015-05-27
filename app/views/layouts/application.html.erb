@@ -11,6 +11,17 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<% if current_user %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  <%= link_to('Change Password', edit_registration_path(:user)) %>
+<% else %>
+  <%= link_to('Signup', new_registration_path(:user)) %>
+  <%= link_to('Login', new_session_path(:user)) %>
+<% end %>
+
+<%= link_to "About", about_path %>
+<%= link_to "New Topic", new_topic_path %>
+
 <%= yield %>
 
 </body>
