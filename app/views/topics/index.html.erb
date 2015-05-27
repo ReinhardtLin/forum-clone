@@ -1,5 +1,7 @@
 <h2>Topic List</h2>
 
+<%= link_to "New Topic", new_topic_path %>
+
 <table>
   <tr>
     <th>Topic</th>
@@ -9,7 +11,7 @@
   </tr>
   <% @topics.each do |t| %>
   <tr>
-    <td><%= t.title %></td>
+    <td><%= link_to t.title, topic_path(t) %></td>
     <td><%= t.user.try(:display_name) %></td>
     <td><%= t.commets_count %></td>
     <td><%= t.create_at.strftime("%B %d at %I:%M %p") %></td>
