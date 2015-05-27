@@ -2,7 +2,8 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @topics = Topic.page(param[:page]).per(10)
+    @q = Topic.search(params[:q])
+    @topics = @q.result(distinct: true).page(param[:page]).per(10)
   end
 
   def show
