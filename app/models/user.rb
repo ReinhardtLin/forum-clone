@@ -9,4 +9,13 @@ class User < ActiveRecord::Base
   def display_name
     self.username
   end
+
+  def set_admin!
+    self.role = "admin"
+    self.save!
+  end
+
+  def admin?
+    self.role = "admin"
+  end
 end

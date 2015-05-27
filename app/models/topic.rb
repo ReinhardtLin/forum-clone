@@ -6,6 +6,6 @@ class Topic < ActiveRecord::Base
   validates_presence_of :title
 
   def can_delete_by?(user)
-    self.user == user
+    (self.user == user) || user.admin?
   end
 end

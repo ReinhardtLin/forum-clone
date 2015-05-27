@@ -8,6 +8,6 @@ class Comment < ActiveRecord::Base
   end
 
   def can_delete_by?(user)
-    ( self.user == user ) || ( self.topic.try(:user) == user )
+    ( self.user == user ) || ( self.topic.try(:user) == user ) || user.admin?
   end
 end
