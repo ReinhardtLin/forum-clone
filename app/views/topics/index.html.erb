@@ -20,7 +20,11 @@
   <tr>
     <td><%= link_to t.title, topic_path(t) %></td>
     <td><%= t.categories.map{ |c| c.name }.join(", ") %></td>
-    <td><%= t.user.try(:display_name) %></td>
+    <td>
+      <% t.authors.each do |a| %>
+        <%= link_to a.display_name, user_path(a) %>
+      <% end %>
+    </td>
     <td><%= t.commets_count %></td>
     <td><%= t.create_at.strftime("%B %d at %I:%M %p") %></td>
   </tr>
